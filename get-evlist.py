@@ -8,11 +8,16 @@ from optparse import OptionParser
 #teste
 # Usage string:
 use = "Usage: get-evlist.py -b YYYY-JDAY -e YYYY-JDAY -l M -m M -s (1-IRIS; 2-IAG)"
-desc = """Script to get a event list from a FDSN server - V1.0 09/03/2014 - M. Rocha                     
+desc = """Script to get a event list from a FDSN server - V2.0 30/03/2014 - M. Rocha                     
 
 Script generate a file (evlist.txt) with the follow rows:                                            
                                                                                           
-yyyy mm dd (jjj) hh min sec msec lat lon dep mag mag_type eval_mode status"""
+yyyy mm dd (jjj) hh min sec msec lat lon dep mag mag_type eval_mode status
+                                                                            
+ex:                                                                                
+get-evlist.py -b 2014-001 -e 2014-010 -l 5 -m 9 -s 1
+
+"""
 
 # Calling Parser:
 parser = OptionParser(usage = use, description = desc)
@@ -122,7 +127,10 @@ for event in catalog:
 	hh=evpref.time.hour
 	mn=evpref.time.minute
 	sec=evpref.time.second
-	msec=evpref.time.microsecond/1000
+	micsec=evpref.time.microsecond
+        msec=micsec/1000
+
+	smicsec=str(micsec)
 
 	syear=str(year)
 
@@ -160,11 +168,10 @@ for event in catalog:
 
 	if msec < 10:
 	        smsec="00"+str(msec)
-	elif jday < 100:
+	elif msec < 100:
 	        smsec="0"+str(msec)
 	else:
 	        smsec=str(msec)
-
 
 #	print "%4d %2d %2d (%3d) %2d %2d %2d %6d %7.3f %8.3f %9.3f %6.3f %4s %9s %11s" % (	evpref.time.year,
 #												evpref.time.month,
@@ -182,14 +189,14 @@ for event in catalog:
 #												evpref.evaluation_mode,
 #												evpref.evaluation_status)
 
-	f.write("%4s %2s %2s (%3s) %2s %2s %2s %6s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s \n" % (	year,
-                                                                                		mm,
-            	        	                                                            	dd,
-                	                                                                	jday,
-                               	               			                                hh,
-                                	                                                	mn,
-                                        	                                	        sec,
-                                                                                                msec,
+	f.write("%4s %2s %2s (%3s) %2s %2s %2s %3s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s \n" % (	syear,
+                                                                                		smm,
+            	        	                                                            	sdd,
+                	                                                                	sjday,
+                               	               			                                shh,
+                                	                                                	smn,
+                                        	                                	        ssec,
+                                                                                                smsec,
        		                                                                         	evpref.latitude,
                 		                                                                evpref.longitude,
                                 		                                                evpref.depth/1000,
