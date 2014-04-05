@@ -1,10 +1,15 @@
-# Para obter um repositório do servidor github:
+#### Para obter um repositório do servidor github:
 
+# E necessário instalar o programa git caso não tenha no computador:
+sudo apt-get install git
+
+# Apagar diretorio existente (cuidado para não apagar scripts que não estejam no repositorio novo)
 sudo rm -r scripts/
-ls
+
+# Comando para baixar o repositorio:
 sudo git clone https://github.com/mprocha/scripts
 
-# Para enviar um repositorio local para o servidor github (repositorio já existente no servidor) 
+#### Para enviar um repositorio local para o servidor github (repositorio já existente no servidor) 
 # Neste passo sera solicitado o usuario e a senha:
 
 git init
