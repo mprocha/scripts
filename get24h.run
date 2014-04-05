@@ -1,0 +1,86 @@
+#!/bin/bash
+
+logfile=get24h.log
+
+>> $logfile
+
+
+#YEAR=2011
+#STATION=JANB
+
+#### Station Eventual 
+NET=BR
+for STATION in BOAV 
+
+#### Stations BL:
+#NET=BL
+#for STATION in AQDB BB19B BSCB BSFB C2SB CLDB CNLB CPSB FRTB ITAB ITRB PARB PEXB PLTB PMNB PTGB RCLB SJMB TRCB VABB
+
+#### Stations BR
+#NET=BR
+#for STATION in ARAG BOAV IPMB JANB ROSB SALB SMTB PDRB PRPB PTLB SALV SDBA SNDB 
+do
+
+#   for YEAR in 2010 2011 2012 2013 2014
+   for YEAR in 2014
+   do
+
+   if [ $YEAR == 2012 ]
+   then
+      JBEG=001
+      JEND=366
+   elif [ $YEAR == 2014 ]
+   then
+      JBEG=027
+      JEND=027
+   else
+      JBEG=001
+      JEND=365
+   fi
+
+      get24h.py -n "$NET" -s "$STATION" -b "$YEAR"-"$JBEG" -e "$YEAR"-"$JEND" -o 2
+
+      if test -d $STATION
+      then
+
+         cd $STATION
+         mkdir HHZ.D HHN.D HHE.D
+         mv *.HHZ.* HHZ.D
+         mv *.HHN.* HHN.D
+         mv *.HHE.* HHE.D
+         cd ..
+         echo $STATION" "$YEAR" "$NET": Founded  Data "
+         echo $STATION" "$YEAR" "$NET": Founded  Data " >> $logfile
+
+         if test -d $YEAR
+         then
+            echo $YEAR Exist
+            if test -d "$YEAR"/"$NET"
+            then
+               echo $NET Exist
+               if test -d "$YEAR"/"$NET"/"$STATION"
+               then
+                  echo $STATION Exist 
+                  mv "$STATION"/*.HHZ.* "$YEAR"/"$NET"/"$STATION"/HHZ.D
+                  mv "$STATION"/*.HHN.* "$YEAR"/"$NET"/"$STATION"/HHN.D
+                  mv "$STATION"/*.HHE.* "$YEAR"/"$NET"/"$STATION"/HHE.D
+                  rm -r $STATION
+               else
+                  mv $STATION "$YEAR"/"$NET"
+               fi
+            else 
+               mkdir "$YEAR"/"$NET"
+               mv $STATION "$YEAR"/"$NET"
+            fi
+         else
+            mkdir $YEAR
+            mkdir "$YEAR"/"$NET"
+            mv $STATION "$YEAR"/"$NET"
+         fi
+
+      else
+         echo $STATION" "$YEAR" "$NET": No Founded  Data "
+         echo $STATION" "$YEAR" "$NET": No Founded  Data " >> $logfile
+      fi
+   done
+done

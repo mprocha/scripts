@@ -1,0 +1,5 @@
+Ex:
+
+get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2
+
+Script get24h.run runs get24.py and can be used to get a big amount of data of diferent years.
