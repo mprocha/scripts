@@ -4,13 +4,13 @@ from obspy import read
 from optparse import OptionParser
 
 ## Usage string:
-use = "Usage: sac2segy.py -f file"
-desc = """Script to convert a SAC-file to SEGY-format"""
+use = "Usage: segy2sac.py -f file"
+desc = """Script to convert a SEGY-file to SAC-format"""
 
 ## Calling Parser:
 parser = OptionParser(usage = use, description = desc)
 ## Options:
-parser.add_option("-f", "--file",   dest="file", type = str, help="SAC-file path")
+parser.add_option("-f", "--file",   dest="file", type = str, help="SEGY-file path")
 ## Parsing options into variables:
 opts, args = parser.parse_args()
 ### Making sure all mandatory options appeared:
@@ -21,7 +21,7 @@ for m in mandatory:
         parser.print_help()
         print ""
         print "Ex: "
-        print "sac2segy.py -f ./file.sac"
+        print "segy2sac.py -f ./file.segy"
         print ""
         print "Marcelo Rocha - UnB - 2014/04/21 - V1.0"
         print ""
@@ -30,9 +30,9 @@ for m in mandatory:
 filer=opts.file
 
 st=read(filer)
-st.write("test.segy",format="SEGY")
+st.write("test.sac",format="SAC")
 print ""
-print "A SEGY-file (test.segy) was created in your workdir"
+print "A SAC-file (test.sac) was created in your workdir"
 print "" 
 quit()
 
