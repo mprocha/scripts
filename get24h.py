@@ -36,7 +36,14 @@ mandatories = ["net", "sta", "b", "e"]
 for m in mandatories:
     if not opts.__dict__[m]:
         print "\nmandatory option is missing\n"
+        print ""
         parser.print_help()
+        print ""
+        print "Ex: "
+        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2"
+        print ""
+        print "Marcelo Rocha - UnB - 2014/04/21 - V1.0"
+        print ""
         exit(-1)
 
 
@@ -44,7 +51,14 @@ for m in mandatories:
 outTypes = ["1", "2"]
 if opts.out not in outTypes:
         print "\noutfile type is not allowed\n"
+        print ""
         parser.print_help()
+        print ""
+        print "Ex: "
+        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2"
+        print ""
+        print "Marcelo Rocha - UnB - 2014/04/21 - V1.0"
+        print ""
         exit(-1)
 
 
