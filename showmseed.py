@@ -17,19 +17,19 @@ opts, args = parser.parse_args()
 mandatory = ["file"]
 for m in mandatory:
     if not opts.__dict__[m]:
-        print ""
+        print("")
         parser.print_help()
-        print ""
-        print "Ex: "
-        print "showdata.py -f /SDS/2014/BR/ARAG/HHZ.D/BR.ARAG..HHZ.D.2014.110"
-        print ""
-        print "Marcelo Rocha - UnB - 2014/04/21 - V1.0"
-        print ""
+        print(" ")
+        print("Ex: ")
+        print("showmseed.py -f /SDS/2014/BR/ARAG/HHZ.D/BR.ARAG..HHZ.D.2014.110")
+        print("")
+        print("Marcelo Rocha - UnB - 2014/04/21 - V1.0")
+        print("")
         exit(-1)
 
 filer=opts.file
 
-print filer
+print(filer)
 
 singlechannel=read(filer)
 #singlechannel.plot()
