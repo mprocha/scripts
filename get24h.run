@@ -3,6 +3,8 @@
 # Script to run get24h.py for several stations and networks:
 # Script get24h.run runs get24.py and can be used to get a big amount of data of diferent years.
 
+# Marcelo Rocha - UnB - 2014/04/21 - V1.0
+
 logfile=get24h.log
 
 >> $logfile

@@ -1,20 +1,17 @@
-programs
-==========
-
-Programs in shell script and python.
-
+=======================
+Repository Description:
+=======================
 In this repository one can find some programs in shell script and python 
 for seismology. Generally, the programs are based in a obspy seismology 
 python package.
 
-For bugs mail me marcelorocha.unb@gmail.com
+For bugs mail me: marcelorocha.unb@gmail.com
 
 Marcelo Rocha 2014/03/22
 
-
-##################################
-###### COMANDOS PARA GITHUB ######
-##################################
+================
+Github commands:
+================
 # Para obter um repositório do servidor github:
 
 # É necessário instalar o programa git caso não tenha no computador:
@@ -26,7 +23,7 @@ sudo rm -r scripts/
 # Comando para baixar o repositorio:
 sudo git clone https://github.com/mprocha/scripts
 
-#### Para enviar um repositorio local para o servidor github (repositorio já existente no servidor) 
+# Para enviar um repositorio local para o servidor github (repositorio já existente no servidor) 
 # Neste passo sera solicitado o usuario e a senha:
 
 git init
@@ -35,5 +32,155 @@ git commit -m "atualização"
 git push origin master
 
 # Usuario: mprocha
+
+=====================
+Programs Description:
+=====================
+
+bkp-mysqldb.sh:
+-----------------------------------------------------------
+Script to generate a backup of database
+in a mysql database server.
+ 
+Marcelo Rocha - UnB - 21-04-2013 - V1.0
+email: marcelorocha.unb@gmail.com
+ 
+Usage:
+bkp-mysqldb.sh [flag] [arg]
+ 
+flags:
+-h         Show this mensage
+-f <file>  Option to choose the output file name
+           Default (without arg): backup-yyyy-mm-dd.sql
+ 
+The file is gziped and saved in the directory ~/Bkp-mysqldb
+-----------------------------------------------------------
+
+get24h.py:
+-----------------------------------------------------------
+Usage: get24h.py -n NET -s STATION -c CHA (Default, ALL) -b YYYY-DAY -e YYYY-DAY
+
+Script criado para baixar arquivos de 24h do Servidor ArcLink IAG-USP
+
+Options:
+  -h, --help            show this help message and exit
+  -n NET, --network=NET
+                        network code
+  -s STA, --station=STA
+                        station code
+  -c CHA, --channel=CHA
+                        channel code
+  -b B, --btime=B       e.g YYYY-JULDAY, First Day to download
+  -e E, --etime=E       e.g YYYY-JULDAY, Last Day to download
+  -o OUT, --outFile=OUT
+                        outfile types: 1=SAC 2=MSEED
+
+Ex: 
+get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2
+
+Created by IAG-USP - 2012
+Modified by Marcelo Rocha - UnB - 2014/04/21 - V1.0
+-----------------------------------------------------------
+
+get24h.run:
+-----------------------------------------------------------
+Script to runs get24.py for several stations and networks.
+Can be used to get a big amount of data of diferent years.
+
+Marcelo Rocha - UnB - 2014/04/21 - V1.0
+-----------------------------------------------------------
+
+get-evlist.py:
+-----------------------------------------------------------
+Usage: get-evlist.py -b YYYY-JDAY -e YYYY-JDAY -l M -m M -s (1-IRIS; 2-IAG)
+
+Script to get a event list from a FDSN server - V2.0 30/03/2014 - M. Rocha
+Script generate a file (evlist.txt) with the follow rows:
+yyyy mm dd (jjj) hh min sec msec lat lon dep mag mag_type eval_mode status
+ex:
+get-evlist.py -b 2014-001 -e 2014-010 -l 5 -m 9 -s 1
+
+Options:
+  -h, --help            show this help message and exit
+  -b TMIN, --beg=TMIN   Begin time
+  -e TMAX, --end=TMAX   End time
+  -l MMIN, --mmin=MMIN  Minimium Magnitude
+  -m MMAX, --mmax=MMAX  Maximum Magnitude
+  -s SERV, --serv=SERV  FDSN Server: 1=IRIS 2=IAG
+-----------------------------------------------------------
+
+getev.py:
+-----------------------------------------------------------
+Usage: getev.py -n NET -s STATION -c CHA (Default, ALL) -b YYYY-DAY -o FORMAT (1-SAC; 2-MSEED) -a SERVER 
+
+Script criado para baixar arquivos de eventos do Servidor ArcLink
+Ex: getev.py -n BR -s JANB -b 2014-048-09-46-00 -o 1 -a 1
+
+Options:
+  -h, --help            show this help message and exit
+  -n NET, --network=NET
+                        network code
+  -s STA, --station=STA
+                        station code
+  -c CHA, --channel=CHA
+                        channel code
+  -b B, --btime=B       e.g YYYY-JUL-HH-MM-SS, Event to download
+  -o OUT, --outFile=OUT
+                        outfile types: 1=SAC 2=MSEED
+  -a SERV, --serv=SERV  Arclink Server: 1=UnB 2=IAG 4=ON 4=IRIS
+-----------------------------------------------------------
+
+mseed2sac.py:
+-----------------------------------------------------------
+Script to convert MSEED-file for a SAC-format (need improvements)
+-----------------------------------------------------------
+
+sac2segy.py:
+-----------------------------------------------------------
+Usage: sac2segy.py -f file
+
+Script to convert a SAC-file to SEGY-format
+
+Options:
+  -h, --help            show this help message and exit
+  -f FILE, --file=FILE  SAC-file path
+
+Ex: 
+sac2segy.py -f ./file.sac
+
+Marcelo Rocha - UnB - 2014/04/21 - V1.0
+-----------------------------------------------------------
+
+segy2sac.py:
+-----------------------------------------------------------
+Usage: segy2sac.py -f file
+
+Script to convert a SEGY-file to SAC-format
+
+Options:
+  -h, --help            show this help message and exit
+  -f FILE, --file=FILE  SEGY-file path
+
+Ex: 
+segy2sac.py -f ./file.segy
+
+Marcelo Rocha - UnB - 2014/04/21 - V1.0
+-----------------------------------------------------------
+
+showmseed.py:
+-----------------------------------------------------------
+Usage: showmseed.py -f file
+
+Script to print a mseed data
+
+Options:
+  -h, --help            show this help message and exit
+  -f FILE, --file=FILE  MSEED FILE PATH containing Data collected
+
+Ex: 
+showdata.py -f /SDS/2014/BR/ARAG/HHZ.D/BR.ARAG..HHZ.D.2014.110
+
+Marcelo Rocha - UnB - 2014/04/21 - V1.0
+-----------------------------------------------------------
 
 
