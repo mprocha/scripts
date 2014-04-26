@@ -80,6 +80,7 @@ get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2
 
 Created by IAG-USP - 2012
 Modified by Marcelo Rocha - UnB - 2014/04/21 - V1.0
+Included a choose for arclink server: Marcelo Rocha - UnB - 2014/04/26 - V2.0
 -----------------------------------------------------------
 
 get24h.run:

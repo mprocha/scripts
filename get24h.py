@@ -8,24 +8,26 @@ from os import mkdir
 
 
 # dumb message...
-print "\nBulk Data Downloader - IAG-USP - 2012\n"
+print "\nBulk Data Downloader - UnB - 2014"
+print "Modified from Bulk Data Download - IAG-USP - 2012"
 
 
 # Usage string:
 use = "Usage: %prog -n NET -s STATION -c CHA (Default, ALL) -b YYYY-DAY -e YYYY-DAY"
-desc = """Script criado para baixar arquivos de 24h do Servidor ArcLink IAG-USP"""
+desc = """Script criado para baixar arquivos de 24h do Servidor ArcLink"""
 
 # Calling Parser:
 parser = OptionParser(usage = use, description = desc)
 
 # Prog options:
 
-parser.add_option("-n", "--network", dest="net", type = str, help="network code")
-parser.add_option("-s", "--station", dest="sta", type = str, help="station code")
-parser.add_option("-c", "--channel", dest="cha", type = str, help="channel code", default="*")
+parser.add_option("-n", "--network", dest="net", type = str, help="Network code")
+parser.add_option("-s", "--station", dest="sta", type = str, help="Station code")
+parser.add_option("-c", "--channel", dest="cha", type = str, help="Channel code", default="*")
 parser.add_option("-b", "--btime", dest="b", type = str, help="e.g YYYY-JULDAY, First Day to download")
 parser.add_option("-e", "--etime", dest="e", type = str, help="e.g YYYY-JULDAY, Last Day to download")
-parser.add_option("-o", "--outFile", dest="out", type = str, help="outfile types: 1=SAC 2=MSEED")
+parser.add_option("-o", "--outFile", dest="out", type = str, help="Outfile types: 1=SAC 2=MSEED")
+parser.add_option("-a", "--arclink", dest="arc", type = str, help="Arclink Server types: 1=UnB 2=IAG 3=IRIS 4=ON")
 
 # The final step is to parse the options and arguments into variables we can use later:
 opts, args = parser.parse_args()
@@ -35,30 +37,22 @@ opts, args = parser.parse_args()
 mandatories = ["net", "sta", "b", "e"]
 for m in mandatories:
     if not opts.__dict__[m]:
-        print "\nmandatory option is missing\n"
-        print ""
+        print "\nMandatory option is missing: [ "+m+" ]\n"
         parser.print_help()
-        print ""
-        print "Ex: "
-        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2"
-        print ""
-        print "Marcelo Rocha - UnB - 2014/04/21 - V1.0"
-        print ""
+        print "Ex: \n"
+        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2 -a 3\n"
+        print "Marcelo Rocha - UnB - 2014/04/26 - V2.0\n"
         exit(-1)
 
 
 # Checking Out File Option:
 outTypes = ["1", "2"]
 if opts.out not in outTypes:
-        print "\noutfile type is not allowed\n"
-        print ""
+        print "\nOutfile type is not allowed\n"
         parser.print_help()
-        print ""
-        print "Ex: "
-        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2"
-        print ""
-        print "Marcelo Rocha - UnB - 2014/04/21 - V1.0"
-        print ""
+        print "Ex: \n"
+        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2 -a 3\n"
+        print "Marcelo Rocha - UnB - 2014/04/26 - V2.0\n"
         exit(-1)
 
 
@@ -67,6 +61,28 @@ if out == "1" :
     _format = "SAC"
 else :
     _format = "MSEED"
+
+
+# Checking Arklink Server Option:
+arcTypes = ["1", "2", "3", "4"]
+if opts.arc not in arcTypes:
+        print "\nArclink type is not allowed\n"
+        parser.print_help()
+        print "Ex: \n"
+        print "get24h.py -n BR -s IPMB -b 2013-350 -e 2013-355 -o 2 -a 3\n"
+        print "Marcelo Rocha - UnB - 2014/04/26 - V2.0\n"
+        exit(-1)
+
+#Retrieve waveforms via ArcLink
+arc = opts.arc
+if arc == "1" :
+    client = Client(host="164.41.28.153", port=18001)
+elif arc == "2":
+    client = Client(host="seisrequest.iag.usp.br", port=18001)
+elif arc == "3" :
+    client = Client(host="rtserve.iris.washington.edu", port=18001)
+elif arc == "4" :
+    client = Client(host="rsis1.on.br", port=18001)
 
 # Setting up Vars...
 net = opts.net
@@ -81,13 +97,6 @@ jday2 = int(opts.e[-3:])
 print jday2 - jday1, "day(s) to search for.\n"
 
 
-# Retrieve waveforms via ArcLink
-#client = Client(host="seisrequest.iag.usp.br", port=18001)
-client = Client(host="seisrequest.iag.usp.br", port=18001)
-#client = Client(host="rsis1.on.br", port=18001)
-
-# Teste para baiar dados do IRIS:
-#client = Client(host="rtserve.iris.washington.edu", port=18001)
 
 while jday1 <= jday2 :
    
