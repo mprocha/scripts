@@ -189,3 +189,11 @@ git.sh
 Program to run git commands to make easy commit changes
 -----------------------------------------------------------
 
+COMANDOS UTEIS:
+-----------------------------------------------------------
+lastlog - Para visualizar a data do ultimo acesso de cada usuario
+          na máquina.
+last - Semelhante ao lastlog (pode ser usado last -a ou last <username>)
+
+-----------------------------------------------------------
+
