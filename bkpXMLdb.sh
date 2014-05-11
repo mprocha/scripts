@@ -61,7 +61,6 @@ else
 fi
 
 cd $dir
-echo " "
 
 dirhost=`hostname`
 if test -d $dirhost
@@ -72,6 +71,7 @@ else
    echo "Directory "$dirhost" Created!!!"
 fi
 
+echo " "
 cd $dirhost
 
 date=`date --rfc-3339=date` 
@@ -83,7 +83,7 @@ scevtls -d mysql://sysop:sysop@localhost/$db --begin "2009-01-01 00:00:00" --end
 
 cat $dbfile | while read ev
 do
-scxmldump -d mysql://sysop:sysop@localhost/$db -E $ev -PAMf -o $ev.xml
+   scxmldump -d mysql://sysop:sysop@localhost/$db -E $ev -PAMf -o $ev.xml
 done
 
 rm $dbfile
