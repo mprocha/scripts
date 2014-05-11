@@ -4,12 +4,8 @@
 # database server:
 # Marcelo Rocha - UnB - 2014/04/21 - V1.0
 
-par1=$1
-par2=$2
-
 usage(){
    echo " "
-   echo "bkp-mysqldb.sh: "
    echo "Script to generate a backup of database"
    echo "in a mysql database server."
    echo " "
@@ -28,11 +24,14 @@ usage(){
    echo " "
 } 
 
-if [ $par1 = "-h" ]
+par1=$1
+par2=$2
+
+if [ -z $par1 ]
 then
    usage
    exit 1
-elif [ -z $par1 ]
+elif [ $par1 = "-h" ]
 then
    usage
    exit 1

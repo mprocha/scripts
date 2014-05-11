@@ -189,11 +189,44 @@ git.sh
 Program to run git commands to make easy commit changes
 -----------------------------------------------------------
 
+bkpXMLdb.sh
+-----------------------------------------------------------
+# Sc3 - Para saber quais eventos estão disponíveis no banco de dados:
+scevtls -d mysql://sysop:sysop@localhost/sc3_master --begin "2012-01-01 00:00:00" --end "2014-04-02 00:00:00" > evdb.dat
+
+# Sc3 - Para gerar um boletim do banco de dados:
+scbulletin -E unb2014gfte -3 -d mysql://sysop:sysop@localhost/sc3_master
+
+# Sc3 - Para gerar um boletim de um arquivo xml:
+scbulletin -i unb2014gfte.xml -f xml -3
+
+# Sc3 - Para enviar um evento em xml para o banco de dados:
+scdb -i unb2014gvlp.xml -d mysql://sysop:sysop@localhost/sc3_master -b 1000
+
+#Obs
+Na application a db é seiscomp3 ao invés de sc3_master
+-----------------------------------------------------------
+
 COMANDOS UTEIS:
 -----------------------------------------------------------
 lastlog - Para visualizar a data do ultimo acesso de cada usuario
           na máquina.
 last - Semelhante ao lastlog (pode ser usado last -a ou last <username>)
 
+-----------------------------------------------------------
+
+m4
+-----------------------------------------------------------
+Comando para subtituir strings de um arquivo.
+
+Ex: O arquivo tmp tem o seguinte conteudo:
+The COLOR fox jumped over the TYPE fence.
+
+m4 -D COLOR=brown -D TYPE=broken tmp
+
+Resultado:
+The brown fox jumped over the broken fence.
+
+Obs. O conteúdo do arquivo nao se altera.
 -----------------------------------------------------------
 
