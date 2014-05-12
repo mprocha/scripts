@@ -71,14 +71,23 @@ else
    echo "Directory "$dirhost" Created!!!"
 fi
 
-echo " "
 cd $dirhost
 
 date=`date --rfc-3339=date` 
 direv=evxml-$date
-mkdir $direv
+
+if test -d $direv
+then
+   echo "Directory "$direv" Exist!!!"
+   rm  $direv/*
+else
+   mkdir $direv
+   echo "Directory "$direv" Created!!!"
+fi
+
 cd $direv
 
+echo " "
 scevtls -d mysql://sysop:sysop@localhost/$db --begin "2009-01-01 00:00:00" --end "$date 23:59:59" > $dbfile
 
 cat $dbfile | while read ev
