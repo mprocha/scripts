@@ -88,11 +88,11 @@ fi
 cd $direv
 
 echo " "
-scevtls -d mysql://sysop:sysop@localhost/$db --begin "2009-01-01 00:00:00" --end "$date 23:59:59" > $dbfile
+/opt/seiscomp3/bin/scevtls -d mysql://sysop:sysop@localhost/$db --begin "2009-01-01 00:00:00" --end "$date 23:59:59" > $dbfile
 
 cat $dbfile | while read ev
 do
-   scxmldump -d mysql://sysop:sysop@localhost/$db -E $ev -PAMf -o $ev.xml
+/opt/seiscomp3/bin/scxmldump -d mysql://sysop:sysop@localhost/$db -E $ev -PAMf -o $ev.xml
 done
 
 rm $dbfile
