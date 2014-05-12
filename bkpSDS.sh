@@ -10,6 +10,7 @@ dir=/storage3/Bkp-SDS
 date=`date --rfc-3339=date` 
 dirbkp=SDS-$date
 
+cd $dir
 
 if test -d $dirbkp
 then
