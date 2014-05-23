@@ -49,9 +49,10 @@ if opts.out not in outTypes:
 out = opts.out
 if out == "1" :
     _format = "SAC"
+    ext = ".SAC"
 else :
     _format = "MSEED"
-
+    ext = ""
 
 # Checking Server Option:
 servTypes = ["1", "2"]
@@ -124,7 +125,7 @@ try:
         #date = str(tr.stats.starttime).replace("-", ".")
         year = str(tr.stats.starttime.year)
         jday = str("%03d" % tr.stats.starttime.julday)
-        filename = net+"."+sta+"."+loc+"."+chan+".D."+year+"."+jday+".SAC"
+        filename = net+"."+sta+"."+loc+"."+chan+".D."+year+"."+jday+ext
         tr.write(dir+"/"+filename, format=_format)
         print filename, "saved."
 except:
