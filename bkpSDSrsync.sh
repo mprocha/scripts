@@ -2,7 +2,7 @@
 
 dd=`date +%Y-%m-%d-%H-%m-%S`
 logfile=logfile-$dd.log
-dir=/storage3/Bkp-SDS
+dir=/storage2/Bkp-SDS
 
 > $dir/logs/log-files/$logfile
 begin=`date`
