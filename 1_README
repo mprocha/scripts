@@ -230,3 +230,12 @@ The brown fox jumped over the broken fence.
 Obs. O conteúdo do arquivo nao se altera.
 -----------------------------------------------------------
 
+rsync
+-----------------------------------------------------------
+Comando para tranferencia de arquivos entre máquinas diferentes,
+com porta não usual.
+
+rsync -av -e 'ssh -p 2222' --progress --inplace PTLB suporte@164.41.28.154:/home/suporte
+
+-----------------------------------------------------------
+
