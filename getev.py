@@ -10,7 +10,10 @@ from os import mkdir
 # Usage string:
 use = "Usage: %prog -n NET -s STATION -c CHA (Default, ALL) -b YYYY-DAY -o FORMAT (1-SAC; 2-MSEED) -a SERVER "
 desc = """Script criado para baixar arquivos de eventos do Servidor ArcLink                                            
-Ex: getev.py -n BR -s JANB -b 2014-048-09-46-00 -o 1 -a 1 """
+Examples:                                                                                                                       
+getev.py -n BR -s ARAG  -b 2014-108-14-27-00 -o 1 -a 1                                                        
+getev.py -n BL -s CNLB  -b 2014-108-14-27-00 -o 1 -a 2                                                        
+getev.py -n ON -s DUB01 -b 2014-108-14-27-00 -o 1 -a 3 """
 
 # Calling Parser:
 parser = OptionParser(usage = use, description = desc)
@@ -22,7 +25,7 @@ parser.add_option("-s", "--station", dest="sta", type = str, help="station code"
 parser.add_option("-c", "--channel", dest="cha", type = str, help="channel code", default="*")
 parser.add_option("-b", "--btime", dest="b", type = str, help="e.g YYYY-JUL-HH-MM-SS, Event to download")
 parser.add_option("-o", "--outFile", dest="out", type = str, help="outfile types: 1=SAC 2=MSEED")
-parser.add_option("-a", "--serv", dest="serv", type = str, help="Arclink Server: 1=UnB 2=IAG 4=ON 4=IRIS")
+parser.add_option("-a", "--serv", dest="serv", type = str, help="Arclink Server: 1=UnB 2=IAG 3=ON 4=IRIS")
 
 
 # The final step is to parse the options and arguments into variables we can use later:
@@ -55,7 +58,7 @@ else :
     ext = ""
 
 # Checking Server Option:
-servTypes = ["1", "2"]
+servTypes = ["1", "2", "3", "4"]
 if opts.serv not in servTypes:
         print "\nServer type is not allowed\n"
         parser.print_help()
@@ -64,13 +67,16 @@ if opts.serv not in servTypes:
 serv = opts.serv
 if serv == "1" :
 	### Cliente UnB:
-	client = Client(host="164.41.28.154", port=18001)
+	client = Client(host="164.41.28.154", port=18001, user="marcelorocha@unb.br")
+        #client = Client(host="164.41.28.154", port=18001)
 elif serv == "2":
 	### Cliente USP:
-	client = Client(host="seisrequest.iag.usp.br", port=18001)
+	client = Client(host="seisrequest.iag.usp.br", port=18001, user="marcelorocha@unb.br")
+	#client = Client(host="seisrequest.iag.usp.br", port=18001)
 elif serv == "3":
 	### Cliente ON:
-	client = Client(host="rsis1.on.br", port=18001)
+	client = Client(host="rsis1.on.br", port=18001, user="marcelorocha@unb.br")
+	#client = Client(host="rsis1.on.br", port=18001)
 else :
 	### Cliente IRIS:
 	client = Client(host="rtserve.iris.washington.edu", port=18001)
@@ -113,7 +119,7 @@ print dir
 
 try:
     print "trying to download day", "%03d" % jul, "..."
-    st = client.getWaveform(net, sta, '*', cha, b - 600,  b + 1200)
+    st = client.getWaveform(net, sta, '*', cha, b ,  b + 8000)
     st.merge(method=1, fill_value="interpolate")
     try:
         mkdir(dir)

@@ -76,7 +76,7 @@ if opts.arc not in arcTypes:
 #Retrieve waveforms via ArcLink
 arc = opts.arc
 if arc == "1" :
-    client = Client(host="164.41.28.153", port=18001)
+    client = Client(host="164.41.28.154", port=18001, user="marcelorocha@unb.br")
 elif arc == "2":
     client = Client(host="seisrequest.iag.usp.br", port=18001)
 elif arc == "3" :

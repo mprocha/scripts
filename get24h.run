@@ -15,7 +15,7 @@ logfile=get24h.log
 
 #### Station Eventual 
 NET=BR
-for STATION in BOAV 
+for STATION in CZSB 
 
 #### Stations BL:
 #NET=BL
@@ -36,8 +36,8 @@ do
       JEND=366
    elif [ $YEAR == 2014 ]
    then
-      JBEG=027
-      JEND=027
+      JBEG=205
+      JEND=205
    else
       JBEG=001
       JEND=365
