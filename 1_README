@@ -239,3 +239,48 @@ rsync -av -e 'ssh -p 2222' --progress --inplace PTLB suporte@164.41.28.154:/home
 
 -----------------------------------------------------------
 
+
+==============================================
+Conteudo do arquivo commandes_SC3-stephane.txt
+==============================================
+
+eiscomp3/bin/seiscomp exec import_inv dlsv /home/stephane/DATA/ON/Stations/dataless/ON/dataless.ON..TER01
+seiscomp3/bin/seiscomp exec scconfig
+seiscomp3/bin/seiscomp exec scmv
+seiscomp3/bin/seiscomp exec scrttv
+seiscomp exec scbulletin -i file.xml -3
+seiscomp exec scdispatch -i file.xml -O remove
+
+seiscomp3/bin/seiscomp exec scevtls -d mysql://sysop:sysop@rsis1.on.br/seiscomp3 --begin "2012-12-19 00:00:00" --end "2012-12-19 23:59:59"
+seiscomp3/bin/seiscomp exec scevtstreams -E gfz2012yvih -d mysql://sysop:sysop@rsis1.on.br/seiscomp3 -L 0 -m 300 > list.txt
+seiscomp3/bin/seiscomp exec scart --list list.txt -I arclink://rsis1.on.br:18001 archive_tmp
+seiscomp3/bin/seiscomp exec scart -dsvE --list list.txt archive_tmp > test.mseed
+
+seiscomp3/bin/seiscomp exec scxmldump -fPAMF  -E gfz2012yvih -d mysql://sysop:sysop@rsis1.on.br/seiscomp3 | seiscomp3/bin/seiscomp exec scdb -i - -d mysql://sysop:sysop@localhost/seiscomp3
+seiscomp3/bin/seiscomp exec scolv -I sdsarchive:///home/sysop/seiscomp3/var/lib/archive
+
+seiscomp3/bin/seiscomp exec scxmldump -fI -o inventory.xml -d mysql://sysop:sysop@localhost/seiscomp3
+seiscomp3/bin/seiscomp exec scxmldump -fC -o config.xml -d mysql://sysop:sysop@localhost/seiscomp3
+
+~/seiscomp3/bin/seiscomp exec scheli --stream ON.SLP01..HHZ --record-file test.mseed --filter "BW(3,2,10)" -F --amp-range-min -9e-8 --amp-range-max 9e-8 --end-time "2012-02-21  23:59:59"
+
+seiscomp exec scrttv --end-time "2014-02-24 15:16:00" --filter "BW(3,2,10)"&
+
+sdsarchive///home/stephane/DATA/ON/SC3_SDS
+
+seiscomp exec scheli --stream ON.STA09..HHZ --record-file SC3_SDS/2012/ON/STA09/HHZ.D/ON.STA09..HHZ.D.2012.343 --filter "BW(3,2,10)" -F --amp-range-min -9e-8 --amp-range-max 9e-8 --end-time "2012-12-08  23:59:59"
+seiscomp exec scheli --stream ON.TIJ01..HHZ -I arclink://192.168.1.208:18001 --filter "BW(3,2,10)" --amp-range-min -9e-8 --amp-range-max 9e-8  --log-file scheli.log --end-time "2014-04-11 23:59:59"
+
+
+To print a png file need to add "capture" after scheli and give the output filname with -o
+seiscomp exec scheli capture --stream ON.STA02..HHZ --record-file SC3_SDS/2012/ON/STA02/HHZ.D/ON.STA02..HHZ.D.2012.277 --filter "BW(3,2,10)" -F --amp-range-min -9e-8 --amp-range-max 9e-8 --end-time "2012-10-03 23:59:59" -o test.png
+
+seiscomp exec scheli --stream ON.STA09..HHZ -I sdsarchive:///home/stephane/DATA/ON/SC3_SDS --filter "BW(3,2,10)" -F --amp-range-min -9e-8 --amp-range-max 9e-8 --end-time "2012-09-14  23:59:59"
+
+seiscomp exec scrttv --record-file SC3_SDS/2013/ON/STA15/HHE.D/ON.STA15..HHE.D.2013.308 --offline --buffer-size 80000
+
+=====================================================
+Fim do conteudo do arquivo commandes_SC3-stephane.txt
+=====================================================
+
+
