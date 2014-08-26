@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sla=$1
+slo=$2
+ela=$3
+elo=$4
+
+taup_time << END
+s
+$sla $slo
+e
+$ela $elo
+q
+END
+
+
