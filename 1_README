@@ -21,7 +21,7 @@ sudo apt-get install git
 sudo rm -r scripts/
 
 # Comando para baixar o repositorio:
-sudo git clone https://github.com/mprocha/scripts
+git clone https://github.com/mprocha/scripts
 
 # Para enviar um repositorio local para o servidor github (repositorio já existente no servidor) 
 # Neste passo sera solicitado o usuario e a senha:
@@ -192,16 +192,16 @@ Program to run git commands to make easy commit changes
 bkpXMLdb.sh
 -----------------------------------------------------------
 # Sc3 - Para saber quais eventos estão disponíveis no banco de dados:
-scevtls -d mysql://sysop:sysop@localhost/sc3_master --begin "2012-01-01 00:00:00" --end "2014-04-02 00:00:00" > evdb.dat
+scevtls -d mysql://sysop:sysop@localhost/seiscomp3 --begin "2012-01-01 00:00:00" --end "2014-04-02 00:00:00" > evdb.dat
 
 # Sc3 - Para gerar um boletim do banco de dados:
-scbulletin -E unb2014gfte -3 -d mysql://sysop:sysop@localhost/sc3_master
+scbulletin -E unb2014gfte -3 -d mysql://sysop:sysop@localhost/seiscomp3
 
 # Sc3 - Para gerar um boletim de um arquivo xml:
 scbulletin -i unb2014gfte.xml -f xml -3
 
 # Sc3 - Para enviar um evento em xml para o banco de dados:
-scdb -i unb2014gvlp.xml -d mysql://sysop:sysop@localhost/sc3_master -b 1000
+scdb -i unb2014gvlp.xml -d mysql://sysop:sysop@localhost/seiscomp3 -b 1000
 
 #Obs
 Na application a db é seiscomp3 ao invés de sc3_master
