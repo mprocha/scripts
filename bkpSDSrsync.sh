@@ -2,13 +2,13 @@
 
 dd=`date +%Y-%m-%d-%H-%m-%S`
 logfile=logfile-$dd.log
-dir=/storage2/Bkp-SDS
+dir=/SDS-BKP/
 
-> $dir/logs/log-files/$logfile
+> $dir/$logfile
 begin=`date`
-echo "Incio: "$begin  >> $dir/logs/log-files/$logfile
+echo "Incio: "$begin  >> $dir$logfile
 
-rsync -av --progress --inplace --log-file="/storage3/Bkp-SDS/logs/log-rsync/rsync.log.$dd" /SDS $dir
+rsync -av --progress --inplace --log-file="/SDS-BKP/rsync.log.$dd" /SDS/ $dir
 
 end=`date`
-echo "Fim  : "$end  >> $dir/logs/log-files/$logfile
+echo "Fim  : "$end  >> $dir$logfile
