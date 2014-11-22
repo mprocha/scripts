@@ -26,9 +26,10 @@ git clone https://github.com/mprocha/scripts
 # Para enviar um repositorio local para o servidor github (repositorio já existente no servidor) 
 # Neste passo sera solicitado o usuario e a senha:
 
+git status
 git init
-git add .
-git commit -m "atualização"
+git add . (ou git add file)
+git commit -m "comentario da atualização"
 git push origin master
 
 # Usuario: mprocha
