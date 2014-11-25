@@ -1,0 +1,17 @@
+2014-11-10 12:40:44.0 -19.66 -43.28    0    2.66  122  3.24       M    manual unb2014wavo UnB Itabira,_MG_Brazil
+2014-11-10 15:10:31.9 -19.59 -43.63    0    1.92  135  3.29       M    manual unb2014wbam UnB Jaboticatubas,_MG_Brazil
+2014-11-10 16:04:53.6 -17.71 -50.36    0    1.38  133    No      No    manual unb2014wbch UnB Rio_Verde,_GO_Brazil
+2014-11-10 17:53:37.9  -6.32 -50.21    0    1.63  193    No      No    manual unb2014wbfw UnB Canaa_dos_carajas,_PA_Brazil
+2014-11-10 21:14:43.8 -18.85 -43.46    0    2.02  138  3.04       M    manual unb2014wbmn UnB Serro,_MG_Brazil
+2014-11-11 07:20:44.5  -3.55 -51.97    0    4.00  194  3.21       M    manual unb2014wcgn UnB Altamira,_PA_Brazil
+2014-11-11 12:42:56.5 -19.63 -43.30    0    1.19  123  3.09       M    manual unb2014wcrd UnB Itabira,_MG_Brazil
+2014-11-11 19:56:54.8 -18.91 -41.99    0    0.93  204  2.83       M    manual unb2014wdfl UnB Governador_Valadares,_MG_Brazil
+2014-11-11 20:56:47.1  -6.05 -50.33    0    4.47  120  3.53       M    manual unb2014wdhk UnB Brazil
+2014-11-12 08:03:56.7  -3.37 -51.77    0    3.77   80  3.30       M    manual unb2014wedl UnB Altamira,_PA_Brazil
+2014-11-12 13:50:51.3 -20.06 -45.34   10    1.12  195  3.15       M    manual unb2014weow UnB Lagoa_da_Prata,_MG_Brazil
+2014-11-12 15:01:54.3  -6.33 -50.09   15    2.76   99  3.59       M    manual unb2014werf UnB Canaa_dos_Carajas,_PA_Brazil
+2014-11-12 15:06:19.9 -19.58 -43.91   30    2.23  222  2.52      mR    manual unb2014werj unb Pedro_Leopoldo,_MG_Brazil
+2014-11-12 16:08:42.0 -19.55 -43.46    4    1.00  209  2.59      mR    manual unb2014wetk unb Itabira,_MG_Brazil
+2014-11-13 09:56:36.4 -11.15 -56.83    0    1.90  128  2.74      mR    manual unb2014wgcq unb Juara,_MT_Brazil
+2014-11-13 10:04:36.5 -11.41 -56.21   95    1.16  211  2.00      mR    manual unb2014wgcx unb Juara,_MT_Brazil
+2014-11-13 19:14:13.9 -18.86 -43.54   21    1.40  141  2.30      mR    manual unb2014wgvb unb Itabira,_MG_Brazil

@@ -60,8 +60,8 @@ end=$edate" "$etime
 #echo $end
 
 > evtlist.txt
-for evt in $(seiscomp exec scevtls -d mysql://sysop:sysop@localhost/seiscomp3 --begin "${begin}" --end "${end}"); do
-        scbulletin -E $evt -3 -x -d mysql://sysop:sysop@localhost/seiscomp3 
+for evt in $(seiscomp exec scevtls -d mysql://sysop:sysop@164.41.28.154/seiscomp3 --begin "${begin}" --end "${end}"); do
+        scbulletin -E $evt -3 -x -d mysql://sysop:sysop@164.41.28.154/seiscomp3 
         echo " "
         echo "#####################################################################"
         echo " "
