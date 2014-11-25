@@ -72,7 +72,15 @@ for evt in $(seiscomp exec scevtls -d mysql://sysop:sysop@164.41.28.154/seiscomp
         lon=`cat tmp | grep Longitude | awk '{print $2}'`
         dep=`cat tmp | grep Depth | awk '{print $2}'`
         res=`cat tmp | grep Residual | awk '{print $3}'`
+        if [ -z $res ]
+        then
+           res="No"
+        fi
         azgap=`cat tmp | grep Azimuthal | awk '{print $3}'`
+        if [ -z $azgap ]
+        then
+           azgap="No"
+        fi
 #        magMwp=`cat tmp | grep " Mwp " | awk '{print $2}'`        
 #        magMwMwp=`cat tmp | grep " Mw(Mwp) " | awk '{print $2}'`        
 #        magmB=`cat tmp | grep " mB " | awk '{print $2}'`        
