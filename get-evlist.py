@@ -24,11 +24,14 @@ parser = OptionParser(usage = use, description = desc)
 
 # Prog options:
 
-parser.add_option("-b", "--beg", dest="tmin", type = str, help="Begin time")
-parser.add_option("-e", "--end", dest="tmax", type = str, help="End time")
+parser.add_option("-b", "--beg",  dest="tmin", type = str, help="Begin time")
+parser.add_option("-e", "--end",  dest="tmax", type = str, help="End time")
 parser.add_option("-l", "--mmin", dest="mmin", type = str, help="Minimium Magnitude", default="0")
 parser.add_option("-m", "--mmax", dest="mmax", type = str, help="Maximum Magnitude", default="9")
-#parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=IRIS 2=IAG")
+parser.add_option("-a", "--lat",  dest="lat",  type = str, help="Latitude of the reference coordinate")
+parser.add_option("-o", "--lon",  dest="lon",  type = str, help="Longitude of the reference coordinate")
+parser.add_option("-r", "--rmax", dest="rmax", type = str, help="Maximum Radius to limite events (need lat long parameter)")
+parser.add_option("-q", "--rmin", dest="rmin", type = str, help="Minimum Radius to limite events (need lat long parameter)")
 parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=UnB (Default) 2=IAG 3=IRIS")
 
 # The final step is to parse the options and arguments into variables we can use later:
@@ -63,6 +66,10 @@ tmin = UTCDateTime(opts.tmin)
 tmax = UTCDateTime(opts.tmax)
 mmin = opts.mmin
 mmax = opts.mmax
+lat = opts.lat
+lon = opts.lon
+rmin = opts.rmin
+rmax = opts.rmax
 
 #year=b.year
 #jul=b.julday
@@ -96,11 +103,11 @@ mmax = opts.mmax
 #tmax=UTCDateTime(fyear+"-"+fmm+"-"+fdd+" "+fhh+":"+fmi+":"+fse)
 #print tmax
 
-catalog=fdsn.get_events(starttime=tmin,
-			endtime=tmax, 
+catalog=fdsn.get_events(starttime=tmin, endtime=tmax,
 			includearrivals=True,
-			minmagnitude=mmin,
-			maxmagnitude=mmax)
+			minmagnitude=mmin, maxmagnitude=mmax,
+                        latitude=lat, longitude=lon,
+                        minradius=rmin, maxradius=rmax)
 
 #catalog=fdsn.get_events(starttime=t0, endtime=t1, includearrivals=True,
 #			includepicks=True, format="catalog")
