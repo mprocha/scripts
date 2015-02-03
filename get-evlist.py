@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from obspy.fdsn import Client
+from obspy.fdsn import Client as fdsnClient
 from obspy.core import UTCDateTime
 from obspy.core.event import readEvents
 from optparse import OptionParser
@@ -28,7 +28,8 @@ parser.add_option("-b", "--beg", dest="tmin", type = str, help="Begin time")
 parser.add_option("-e", "--end", dest="tmax", type = str, help="End time")
 parser.add_option("-l", "--mmin", dest="mmin", type = str, help="Minimium Magnitude", default="0")
 parser.add_option("-m", "--mmax", dest="mmax", type = str, help="Maximum Magnitude", default="9")
-parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=IRIS 2=IAG")
+#parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=IRIS 2=IAG")
+parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=UnB (Default) 2=IAG 3=IRIS")
 
 # The final step is to parse the options and arguments into variables we can use later:
 opts, args = parser.parse_args()
@@ -43,17 +44,19 @@ for m in mandatories:
 
 
 # Checking Out File Option:
-servTypes = ["1", "2"]
+servTypes = ["1", "2", "3"]
 if opts.serv not in servTypes:
         print "\nServer FDSN type is not allowed\n"
         parser.print_help()
         exit(-1)
 
 serv = opts.serv
-if serv == "1" :
-	fdsn=Client("IRIS")
-else :
-	fdsn=Client(base_url="http://moho.iag.usp.br")
+if serv == "3" :
+	fdsn=fdsnClient(base_url="IRIS")
+elif serv == "2":
+	fdsn=fdsnClient(base_url="http://moho.iag.usp.br")
+else:
+        fdsn=fdsnClient(base_url="http://164.41.28.154:8080")
 
 # Setting up Vars...
 tmin = UTCDateTime(opts.tmin)
