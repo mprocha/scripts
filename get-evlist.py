@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from obspy.fdsn import Client as fdsnClient
+from obspy.fdsn import Client
 from obspy.core import UTCDateTime
 from obspy.core.event import readEvents
 from optparse import OptionParser
@@ -15,7 +15,8 @@ Script generate a file (evlist.txt) with the follow rows:
 yyyy mm dd (jjj) hh min sec msec lat lon dep mag mag_type eval_mode status
                                                                             
 ex:                                                                                
-get-evlist.py -b 2014-001 -e 2014-010 -l 5 -m 9 -s 1
+./get-evlist.py -b 2014-001 -e 2014-010 -l 1 -m 9 -s 1
+./get-evlist.py -b 2014-345 -e 2014-365 -l 1 -m 9 --rmin=3 --rmax=10 --lat=-11.612300 --lon=-56.729600 -s 1
 
 """
 
@@ -24,14 +25,14 @@ parser = OptionParser(usage = use, description = desc)
 
 # Prog options:
 
-parser.add_option("-b", "--beg",  dest="tmin", type = str, help="Begin time")
-parser.add_option("-e", "--end",  dest="tmax", type = str, help="End time")
+parser.add_option("-b", "--beg", dest="tmin", type = str, help="Begin time")
+parser.add_option("-e", "--end", dest="tmax", type = str, help="End time")
 parser.add_option("-l", "--mmin", dest="mmin", type = str, help="Minimium Magnitude", default="0")
 parser.add_option("-m", "--mmax", dest="mmax", type = str, help="Maximum Magnitude", default="9")
 parser.add_option("-a", "--lat",  dest="lat",  type = str, help="Latitude of the reference coordinate")
 parser.add_option("-o", "--lon",  dest="lon",  type = str, help="Longitude of the reference coordinate")
-parser.add_option("-r", "--rmax", dest="rmax", type = str, help="Maximum Radius to limite events (need lat long parameter)")
-parser.add_option("-q", "--rmin", dest="rmin", type = str, help="Minimum Radius to limite events (need lat long parameter)")
+parser.add_option("-r", "--rmax", dest="rmax", type = str, help="Maximum Radius to limit events (need lat long parameter)")
+parser.add_option("-q", "--rmin", dest="rmin", type = str, help="Minimum Radius to limit events (need lat long parameter)")
 parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=UnB (Default) 2=IAG 3=IRIS")
 
 # The final step is to parse the options and arguments into variables we can use later:
@@ -55,11 +56,11 @@ if opts.serv not in servTypes:
 
 serv = opts.serv
 if serv == "3" :
-	fdsn=fdsnClient(base_url="IRIS")
-elif serv == "2":
-	fdsn=fdsnClient(base_url="http://moho.iag.usp.br")
+	fdsn=Client(base_url="IRIS")
+elif serv == "2" :
+	fdsn=Client(base_url="http://moho.iag.usp.br")
 else:
-        fdsn=fdsnClient(base_url="http://164.41.28.154:8080")
+	fdsn=Client(base_url="http://164.41.28.154:8080")
 
 # Setting up Vars...
 tmin = UTCDateTime(opts.tmin)
@@ -103,11 +104,15 @@ rmax = opts.rmax
 #tmax=UTCDateTime(fyear+"-"+fmm+"-"+fdd+" "+fhh+":"+fmi+":"+fse)
 #print tmax
 
-catalog=fdsn.get_events(starttime=tmin, endtime=tmax,
+catalog=fdsn.get_events(starttime=tmin,
+			endtime=tmax,
 			includearrivals=True,
-			minmagnitude=mmin, maxmagnitude=mmax,
-                        latitude=lat, longitude=lon,
-                        minradius=rmin, maxradius=rmax)
+			minmagnitude=mmin,
+			maxmagnitude=mmax,
+			latitude=lat,
+			longitude=lon,
+			minradius=rmin,
+			maxradius=rmax)
 
 #catalog=fdsn.get_events(starttime=t0, endtime=t1, includearrivals=True,
 #			includepicks=True, format="catalog")
@@ -198,6 +203,22 @@ for event in catalog:
 #												magpref.magnitude_type,
 #												evpref.evaluation_mode,
 #												evpref.evaluation_status)
+
+	print "%4s %2s %2s (%3s) %2s %2s %2s %3s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s " % (	syear,
+                                                                                		smm,
+            	        	                                                            	sdd,
+                	                                                                	sjday,
+                               	               			                                shh,
+                                	                                                	smn,
+                                        	                                	        ssec,
+                                                                                                smsec,
+       		                                                                         	evpref.latitude,
+                		                                                                evpref.longitude,
+                                		                                                evpref.depth/1000,
+                                                		                                magpref.mag,
+                                                                		                magpref.magnitude_type,
+												evpref.evaluation_mode,
+												evpref.evaluation_status)
 
 	f.write("%4s %2s %2s (%3s) %2s %2s %2s %3s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s \n" % (	syear,
                                                                                 		smm,

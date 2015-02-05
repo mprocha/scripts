@@ -67,7 +67,7 @@ if opts.serv not in servTypes:
 serv = opts.serv
 if serv == "1" :
 	### Cliente UnB:
-	client = Client(host="164.41.28.154", port=18001, user="marcelorocha@unb.br")
+	client = Client(host="datasisInt.unb.br", port=18001, user="marcelorocha@unb.br")
         #client = Client(host="164.41.28.154", port=18001)
 elif serv == "2":
 	### Cliente USP:
@@ -77,9 +77,9 @@ elif serv == "3":
 	### Cliente ON:
 	client = Client(host="rsis1.on.br", port=18001, user="marcelorocha@unb.br")
 	#client = Client(host="rsis1.on.br", port=18001)
-else :
+elif serv == "4":
 	### Cliente IRIS:
-	client = Client(host="rtserve.iris.washington.edu", port=18001)
+	client = Client(host="rtserve.iris.washington.edu", port=18001, user="marcelorocha@unb.br")
 
 
 
