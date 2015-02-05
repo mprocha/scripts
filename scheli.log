@@ -1,0 +1,7 @@
+2015/02/05 10:01:49 [notice/Application] Starting
+2015/02/05 10:01:49 [error/Communication] SP_error: (-2) Could not connect. Is Spread running?
+2015/02/05 10:01:49 [error/Communication] Could not connect to server: localhost, internal error: 7
+2015/02/05 10:01:49 [error/Application] Could not connect to message system
+2015/02/05 10:01:49 [error/Communication] SP_error: (-2) Could not connect. Is Spread running?
+2015/02/05 10:01:49 [error/Communication] Could not connect to server: localhost, internal error: 7
+2015/02/05 10:01:58 [warning/Helicorder] WARNING: Unable to retrieve gain for ON.TIJ01..HHZ: using default gain
