@@ -15,9 +15,9 @@ Script generate a file (evlist.txt) with the follow rows:
 yyyy mm dd (jjj) hh min sec msec lat lon dep mag mag_type eval_mode status
                                                                             
 ex:                                                                                
-./get-evlist.py -b 2014-001 -e 2014-010 -l 1 -m 9 -s 1
-
-./get-evlist.py -b 2014-345 -e 2014-365 -l 1 -m 9 --rmin=3 --rmax=10 --lat=-11.612300 --lon=-56.729600 -s 1
+get-evlist.py -b 2014-001 -e 2014-010 -l 1 -m 9 -s 1                                                        
+                                                                                           
+get-evlist.py -b 2014-345 -e 2014-365 -l 1 -m 9 --rmin=3 --rmax=10 --lat=-11.6 --lon=-56.7 -s 1
 
 """
 
@@ -32,8 +32,8 @@ parser.add_option("-l", "--mmin", dest="mmin", type = str, help="Minimium Magnit
 parser.add_option("-m", "--mmax", dest="mmax", type = str, help="Maximum Magnitude", default="9")
 parser.add_option("-a", "--lat",  dest="lat",  type = str, help="Latitude of the reference coordinate")
 parser.add_option("-o", "--lon",  dest="lon",  type = str, help="Longitude of the reference coordinate")
-parser.add_option("-r", "--rmax", dest="rmax", type = str, help="Maximum Radius to limit events (need lat long parameter)")
-parser.add_option("-q", "--rmin", dest="rmin", type = str, help="Minimum Radius to limit events (need lat long parameter)")
+parser.add_option("-r", "--rmax", dest="rmax", type = str, help="Maximum Radius to limit events (need lat & lon param)")
+parser.add_option("-q", "--rmin", dest="rmin", type = str, help="Minimum Radius to limit events (need lat & long param)")
 parser.add_option("-s", "--serv", dest="serv", type = str, help="FDSN Server: 1=UnB (Default) 2=IAG 3=IRIS")
 
 # The final step is to parse the options and arguments into variables we can use later:
