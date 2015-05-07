@@ -45,9 +45,9 @@ do
          sort tmp | awk '{if ($0 != prev) {print; prev = $0}}' > $net-$sta-$year-$phase.list
          rm tmp
       else
-         echo "------------------------------"
-         echo "Station no have year: "$year
-         echo "------------------------------"
+         echo "-------------------------------------------"
+         echo "Station "$sta" no have data for year "$year
+         echo "-------------------------------------------"
       fi
    fi
 
