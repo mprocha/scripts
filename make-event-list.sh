@@ -3,8 +3,8 @@
 # Entre com o ano em frente ao script na linha de comando
 year=$1
 
-phase=P
-#phase=PKIKP
+#phase=P
+phase=PKIKP
 
 if [ "$phase" = "P" ]
 then
