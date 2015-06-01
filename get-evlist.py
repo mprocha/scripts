@@ -61,7 +61,9 @@ if serv == "3" :
 elif serv == "2" :
 	fdsn=Client(base_url="http://moho.iag.usp.br")
 else:
-	fdsn=Client(base_url="http://datasisInt.unb.br:8080")
+	fdsn=Client(base_url="http://datasisint.unb.br:8080")
+
+#teste
 
 # Setting up Vars...
 tmin = UTCDateTime(opts.tmin)
