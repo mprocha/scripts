@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in `seq 2010 2014`
+for i in `seq 2010 2015`
 do
    if [ -d $i ]
    then
