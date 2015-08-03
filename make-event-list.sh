@@ -1,10 +1,33 @@
 #!/bin/bash
 
+usage(){
+if [ -z $1 ]
+then
+   echo " "
+   echo "usage: make-event-list.sh year phase "
+   echo " "
+   echo "   Use the following Phase Names:"
+   echo "    P, PKIKP, S, ScS, SKS, SKKS"
+   echo " "
+fi
+}
+
+if [ -z $1 ]
+then
+   usage
+   exit 1
+fi
+
 # Entre com o ano em frente ao script na linha de comando
 year=$1
+phase=$2
+
 
 #phase=P
-phase=PKIKP
+#phase=PKIKP
+#phase=S ## phase ScS have the same GCARC interval than S
+#phase=SKS
+#phase=SKKS
 
 if [ "$phase" = "P" ]
 then
@@ -16,9 +39,42 @@ then
     deltamin=150
     deltamax=180
     magmin=5.0
+elif [ "$phase" = "S" ]
+then
+    deltamin=30
+    deltamax=95
+    magmin=5.4
+elif [ "$phase" = "ScS" ]
+then
+    deltamin=30
+    deltamax=95
+    magmin=5.4
+elif [ "$phase" = "SKS" ]
+then
+    deltamin=100
+    deltamax=145
+    magmin=5.4
+elif [ "$phase" = "SKKS" ]
+then
+    deltamin=100
+    deltamax=180
+    magmin=5.4
+else
+    echo " "
+    echo "Type a correct phase name"
+    usage    
+    exit 1
 fi
 
-cat /home/marcelo/maps/a-sta/StaList.all | grep Antarctica | while read id net sta lat lon elev b e loc status
+
+echo "Phase: "$phase"   Deltamin: "$deltamin"   Deltamax: "$deltamax"   Magmin: "$magmin
+
+latMin=-40
+latMax=6
+lonMin=-74
+lonMax=-30
+
+cat /home/marcelo/maps/a-sta/StaList.all | grep -v sugerida | grep -v planejada | grep -v verificar | awk '{ if ( $4 >= -40 && $4 <= 6 && $5 >= -74 && $5 <= -30 ) { print $0 } }' | while read id net sta lat lon elev b e loc status
 do
 
    if test -f $net-$sta-$year-$phase.list; then
