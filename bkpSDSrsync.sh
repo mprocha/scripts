@@ -12,7 +12,7 @@ dir=/SDS-BKP/
 begin=`date`
 echo "Incio: "$begin  >> $dir/log-rsync/$logfile
 
-rsync -av --exclude="/SDS/SDS_SIS" --progress --inplace --log-file="/SDS-BKP/log-rsync/rsync.log.$dd" /SDS/ $dir
+rsync -av --exclude="/SDS/SDS_SIS" --exclude="/SDS/DATA-SIS" --progress --inplace --log-file="/SDS-BKP/log-rsync/rsync.log.$dd" /SDS/ $dir
 
 end=`date`
 echo "Fim  : "$end  >> $dir/log-rsync/$logfile
