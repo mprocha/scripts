@@ -1,5 +1,9 @@
 #!/bin/bash
 
+VERIFICA=$(df -h | awk '{ print $1}' | grep 164.41.28.155:/nfs/SDS)
+
+if [ $VERIFICA = 164.41.28.155:/nfs/SDS ]; then
+
 dd=`date +%Y-%m-%d-%H-%m-%S`
 logfile=logfile-$dd.log
 dir=/SDS-BKP/
@@ -12,3 +16,5 @@ rsync -av --progress --inplace --log-file="/SDS-BKP/log-rsync/rsync.log.$dd" /SD
 
 end=`date`
 echo "Fim  : "$end  >> $dir/log-rsync/$logfile
+
+fi
