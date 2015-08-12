@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+for list in *.list
+do
+net=`echo $list | sed 's/-/ /g' | awk '{print $1}'`
+sta=`echo $list | sed 's/-/ /g' | awk '{print $3}'`
+
+echo $list
+
+cat $list | while read year mm dd jjj hh min sec msec elat elon edep mag tmag aa bb
+do
+
+jjj=`echo $jjj | sed 's/(//g' | sed 's/)//g'`
+ 
+echo $net" "sta" "$year"-"$jjj"-"$hh"-"$min"-"$sec"."$msec
+
+getev.py -n $net -s $sta -b $year-$jjj-$hh-$min-$sec.$msec --elat=$elat --elon=$elon --edep=$edep -a 1
+
+done
+done
