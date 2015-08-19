@@ -13,7 +13,7 @@ do
 
 jjj=`echo $jjj | sed 's/(//g' | sed 's/)//g'`
  
-echo $net" "sta" "$year"-"$jjj"-"$hh"-"$min"-"$sec"."$msec
+echo $net" "$sta" "$year"-"$jjj"-"$hh"-"$min"-"$sec"."$msec
 
 getev.py -n $net -s $sta -b $year-$jjj-$hh-$min-$sec.$msec --elat=$elat --elon=$elon --edep=$edep -a 1
 
