@@ -177,7 +177,7 @@ try:
         year = str(tr.stats.starttime.year)
         jday = str("%03d" % tr.stats.starttime.julday)
 #        filename = net+"."+sta+"."+loc+"."+chan+".D."+year+"."+jday+ext
-        if form = 1:
+        if form == 1:
             filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+chan+".sac"
         else:
             if chan == 'BHZ' or chan=='EHZ' or chan='HHZ' or chan='LHZ' orchan='SHZ' or chan='UHZ' or chan='VHZ' :
