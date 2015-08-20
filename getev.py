@@ -28,8 +28,8 @@ parser.add_option("--elat", dest="elat", type = str, help="Event Latitude")
 parser.add_option("--elon", dest="elon", type = str, help="Event Laingitude")
 parser.add_option("--edep", dest="edep", type = float, help="Event Depth")
 #parser.add_option("-o", "--outFile", dest="out", type = str, help="outfile types: 1=SAC 2=MSEED")
-parser.add_option("-a", "--serv", dest="serv", type = str, help="Arclink Server: 1=UnB 2=IAG 3=ON 4=IRIS")
-parser.add_option("-f", "--format", dest="form", type = str, help="Out file name format: 1=Default 2=tomo")
+parser.add_option("-a", "--serv", dest="serv", type = str, help="Arclink Server: 1=UnB 2=IAG 3=ON 4=IRIS 5=UnB-Ext")
+parser.add_option("-f", "--format", dest="form", type = int, help="Out file name format: 1=Default 2=tomo")
 
 
 # The final step is to parse the options and arguments into variables we can use later:
@@ -61,7 +61,7 @@ for m in mandatories:
 #    ext = ".mseed"
 
 # Checking Server Option:
-servTypes = ["1", "2", "3", "4"]
+servTypes = ["1", "2", "3", "4", "5"]
 if opts.serv not in servTypes:
         print "\nServer type is not allowed\n"
         parser.print_help()
@@ -83,6 +83,10 @@ elif serv == "3":
 elif serv == "4":
 	### Cliente IRIS:
 	client = Client(host="rtserve.iris.washington.edu", port=18001, user="marcelorocha@unb.br")
+elif serv == "5" :
+	### Cliente UnB Externo:
+	client = Client(host="datasis.unb.br", port=18001, user="marcelorocha@unb.br")
+        #client = Client(host="164.41.28.153", port=18001)
 
 
 # Setting up Vars...
@@ -177,18 +181,24 @@ try:
         year = str(tr.stats.starttime.year)
         jday = str("%03d" % tr.stats.starttime.julday)
 #        filename = net+"."+sta+"."+loc+"."+chan+".D."+year+"."+jday+ext
-        if form == 1:
-            filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+chan+".sac"
+#        print form
+        if form == 2:
+            if chan == 'BHZ' or chan == 'EHZ' or chan == 'HHZ' or chan == 'LHZ' or chan == 'SHZ' or chan == 'UHZ' or chan == 'VHZ':
+                 nchan='1'
+#                 print nchan
+                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
+            elif chan == 'BHN' or chan == 'EHN' or chan == 'HHN' or chan == 'LHN' or chan == 'SHN' or chan == 'UHN' or chan == 'VHN':
+                 nchan='2'
+#                 print nchan
+                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
+            elif chan == 'BHE' or chan == 'EHE' or chan == 'HHE' or chan == 'LHE' or chan == 'SHE' or chan == 'UHE' or chan == 'VHE':
+                 nchan='3'
+#                 print nchan
+                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
         else:
-            if chan == 'BHZ' or chan == 'EHZ' or chan == 'HHZ' or chan == 'LHZ' or chan == 'SHZ' or chan == 'UHZ' or chan == 'VHZ' :
-                 nchan=1
-                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
-            elif chan == 'BHN' or chan == 'EHN' or chan == 'HHN' or chan == 'LHN' or chan == 'SHN' or chan == 'UHN' or chan == 'VHN' :
-                 nchan=2
-                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
-            elif chan == 'BHE' or chan == 'EHE' or chan == 'HHE' or chan == 'LHE' or chan == 'SHE' or chan == 'UHE' or chan == 'VHE' :
-                 nchan=3
-                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
+            filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+chan+".sac"
+
+#        print filename
 
         tr.write(dir+"/"+filename, format="SAC")
         t=SacIO()
