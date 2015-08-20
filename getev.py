@@ -29,6 +29,7 @@ parser.add_option("--elon", dest="elon", type = str, help="Event Laingitude")
 parser.add_option("--edep", dest="edep", type = float, help="Event Depth")
 #parser.add_option("-o", "--outFile", dest="out", type = str, help="outfile types: 1=SAC 2=MSEED")
 parser.add_option("-a", "--serv", dest="serv", type = str, help="Arclink Server: 1=UnB 2=IAG 3=ON 4=IRIS")
+parser.add_option("-f", "--format", dest="form", type = str, help="Out file name format: 1=Default 2=tomo")
 
 
 # The final step is to parse the options and arguments into variables we can use later:
@@ -82,7 +83,6 @@ elif serv == "3":
 elif serv == "4":
 	### Cliente IRIS:
 	client = Client(host="rtserve.iris.washington.edu", port=18001, user="marcelorocha@unb.br")
-
 
 
 # Setting up Vars...
@@ -160,6 +160,7 @@ else:
 dir=syear+"."+sjul+"."+shour+"."+smin+"."+ssec
 print dir
 
+form = opts.form
 
 try:
     print "trying to download day", "%03d" % jul, "..."
@@ -176,7 +177,19 @@ try:
         year = str(tr.stats.starttime.year)
         jday = str("%03d" % tr.stats.starttime.julday)
 #        filename = net+"."+sta+"."+loc+"."+chan+".D."+year+"."+jday+ext
-        filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+chan+".sac"
+        if form = 1:
+            filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+chan+".sac"
+        else:
+            if chan == 'BHZ' or chan=='EHZ' or chan='HHZ' or chan='LHZ' orchan='SHZ' or chan='UHZ' or chan='VHZ' :
+                 nchan=1
+                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
+            elif chan == 'BHN' or chan=='EHN' or chan='HHN' or chan='LHN' orchan='SHN' or chan='UHN' or chan='VHN' :
+                 nchan=2
+                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
+            elif chan == 'BHE' or chan=='EHE' or chan='HHE' or chan='LHE' orchan='SHE' or chan='UHE' or chan='VHE' :
+                 nchan=3
+                 filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
+
         tr.write(dir+"/"+filename, format="SAC")
         t=SacIO()
         t.SetHvalueInFile(dir+"/"+filename,'a',ptime)
