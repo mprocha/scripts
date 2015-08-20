@@ -180,13 +180,13 @@ try:
         if form == 1:
             filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+chan+".sac"
         else:
-            if chan == 'BHZ' or chan=='EHZ' or chan='HHZ' or chan='LHZ' orchan='SHZ' or chan='UHZ' or chan='VHZ' :
+            if chan == 'BHZ' or chan == 'EHZ' or chan == 'HHZ' or chan == 'LHZ' or chan == 'SHZ' or chan == 'UHZ' or chan == 'VHZ' :
                  nchan=1
                  filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
-            elif chan == 'BHN' or chan=='EHN' or chan='HHN' or chan='LHN' orchan='SHN' or chan='UHN' or chan='VHN' :
+            elif chan == 'BHN' or chan == 'EHN' or chan == 'HHN' or chan == 'LHN' or chan == 'SHN' or chan == 'UHN' or chan == 'VHN' :
                  nchan=2
                  filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
-            elif chan == 'BHE' or chan=='EHE' or chan='HHE' or chan='LHE' orchan='SHE' or chan='UHE' or chan='VHE' :
+            elif chan == 'BHE' or chan == 'EHE' or chan == 'HHE' or chan == 'LHE' or chan == 'SHE' or chan == 'UHE' or chan == 'VHE' :
                  nchan=3
                  filename = syear+"."+sjul+"."+shour+"."+smin+"."+ssec+"."+sta+"."+nchan+".sac"
 
