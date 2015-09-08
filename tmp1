@@ -1,0 +1,55 @@
+Event:
+    Public ID              unb2014wgvb
+    Preferred Origin ID    Origin#20141120150109.705188.6901
+    Preferred Magnitude ID Magnitude#20141120150117.924342.6921
+    Description
+      earthquake name: Itabira, MG      region name: Brazil
+    Creation time          2014-11-14 12:39:26
+
+Origin:
+    Public ID              Origin#20141120150109.705188.6901
+    Date                   2014-11-13
+    Time                   19:14:13.9  +/-  1.3 s
+    Latitude               -18.86 deg  +/-    3 km
+    Longitude              -43.54 deg  +/-    3 km
+    Depth                      21 km   +/-   10 km
+    Agency                 unb
+    Author                 analistas@analise02
+    Mode                   manual
+    Status                 preliminary
+    Creation time          2014-11-20 15:01:09
+    Residual RMS              1.40 s
+    Azimuthal gap             141 deg
+
+3 Network magnitudes:
+    MLv       3.04 +/- 0.25   5            unb
+    mR        2.30 +/- 0.12   5 preferred  unb
+    M         2.79            5            UnB
+
+11 Phase arrivals:
+    sta  net   dist azi  phase   time         res     wt  sta
+    SJMB  BL    2.2  86  P       19:14:48.3  -1.5 M  1.0  SJMB 
+    SJMB  BL    2.2  86  S       19:15:15.6  -2.0 M  1.0  SJMB 
+    BSCB  BL    2.4 208  P       19:14:52.6   0.2 M  1.0  BSCB 
+    BSCB  BL    2.4 208  S       19:15:19.8  -2.4 M  1.0  BSCB 
+    BSFB  BL    2.5  90  P       19:14:54.0  -0.1 M  1.0  BSFB 
+    BSFB  BL    2.5  90  S       19:15:25.1  -0.2 M  1.0  BSFB 
+    RIB01 ON    3.0  99  P       19:15:01.6   1.1 M  1.0  RIB01
+    RIB01 ON    3.0  99  S       19:15:38.4   1.8 M  1.0  RIB01
+    JANB  BR    3.8 349  P       19:15:12.3   0.3 M  1.0  JANB 
+    JANB  BR    3.8 349  S       19:15:58.1   0.6 M  1.0  JANB 
+    MAN01 ON    4.0 186  S       19:16:03.6   2.2 M  1.0  MAN01
+
+10 Station magnitudes:
+    sta  net   dist azi  type   value   res        amp per
+    SJMB  BL    2.2  86  MLv     2.75 -0.28   0.102791      
+    SJMB  BL    2.2  86  mR      2.36  0.06        N/A  N/A 
+    BSCB  BL    2.4 208  MLv     2.87 -0.17    0.10409      
+    BSCB  BL    2.4 208  mR      2.41  0.12        N/A  N/A 
+    BSFB  BL    2.5  90  MLv     3.00 -0.04   0.121024      
+    BSFB  BL    2.5  90  mR      2.26 -0.03        N/A  N/A 
+    RIB01 ON    3.0  99  MLv     3.16  0.12   0.0980162      
+    RIB01 ON    3.0  99  mR      2.32  0.02        N/A  N/A 
+    JANB  BR    3.8 349  MLv     3.54  0.50   0.0928118      
+    JANB  BR    3.8 349  mR      2.03 -0.27        N/A  N/A 
+
