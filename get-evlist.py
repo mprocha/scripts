@@ -207,7 +207,7 @@ for event in catalog:
 #												evpref.evaluation_mode,
 #												evpref.evaluation_status)
 
-	print "%4s %2s %2s (%3s) %2s %2s %2s %3s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s " % (	syear,
+	print "%4s %2s %2s (%3s) %2s %2s %2s %3s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s %22s %12s %15s" % (	syear,
                                                                                 		smm,
             	        	                                                            	sdd,
                 	                                                                	sjday,
@@ -221,8 +221,12 @@ for event in catalog:
                                                 		                                magpref.mag,
                                                                 		                magpref.magnitude_type,
 												evpref.evaluation_mode,
-												evpref.evaluation_status)
+												evpref.evaluation_status,
+												evpref.creation_info.author, 
+												event.resource_id.id.replace("smi:scs/0.6/",""),
+        											str(event.event_type).replace(" ","-"))
 
+												
 	f.write("%4s %2s %2s (%3s) %2s %2s %2s %3s %7.3f %8.3f %9.3f %6.3f %4s %9s %11s \n" % (	syear,
                                                                                 		smm,
             	        	                                                            	sdd,
