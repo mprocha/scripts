@@ -17,8 +17,13 @@ yyyy mm dd (jjj) hh min sec msec lat lon dep mag mag_type eval_mode status
 ex:                                                                                
 get-evlist.py -b 2014-001 -e 2014-010 -l 1 -m 9 -s 1                                                        
                                                                                            
-get-evlist.py -b 2014-345 -e 2014-365 -l 1 -m 9 --rmin=3 --rmax=10 --lat=-11.6 --lon=-56.7 -s 1
+get-evlist.py -b 2014-345 -e 2014-365 -l 1 -m 9 --rmin=3 --rmax=10 --lat=-11.6 --lon=-56.7 -s 1                                                             
 
+get-evlist.py -b 2015-290 -e 2015-300 -s 2                                                                
+
+get-evlist.py -b 2015-269 -e 2015-281 -s 1                                                                                                
+
+get-evlist.py -b 2015-275 -e 2015-280 -s 3
 """
 
 # Calling Parser:
