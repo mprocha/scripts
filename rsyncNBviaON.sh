@@ -9,6 +9,6 @@ do
       mkdir $i
    fi
    cd $i
-   sshpass -p "unb2014sds" rsync -av --timeout=50 unb@rsis2.on.br::ON/$i/  ./
+   sshpass -p "on2014sds" rsync -av --timeout=50 on@rsis2.on.br::NB/$i/  ./
    cd ..
 done
